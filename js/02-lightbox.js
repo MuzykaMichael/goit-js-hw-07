@@ -21,13 +21,14 @@ function createGalleryItems(galleryItems) {
 
 function zoomGalleryItems(e){
 e.preventDefault();
-const isImgEl = e.target.classList.contains('gallery__image');
-if(!isImgEl){
+if(e.target.nodeName !== "IMG"){
     return
-} 
-var lightbox = new SimpleLightbox('.gallery__link',{
+} else {
+const lightbox = new SimpleLightbox('.gallery__link',{
 captionsData: 'alt',
 captionDelay: 250,
-});
-
+})
+gallery.removeEventListener('click', zoomGalleryItems)
+};
 }
+
